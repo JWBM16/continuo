@@ -1,0 +1,36 @@
+name: SayBranch
+on: 
+  push:
+    branches: 
+      - main
+      - develop
+      - release
+      
+jobs:
+  welcome:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Verify Main Branch
+      uses: actions/checkout@v2
+    
+    - name: Finalizar Welcome
+      run: echo "Finalizar el welcome"
+
+  hello_branches:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Say something 🔔
+      if: ${{ github.ref == 'refs/heads/main'}}
+      run: echo "Sucedio algo en Main"
+      
+    - name: Say something 🔔
+      if: ${{ github.ref == 'refs/heads/develop'}}
+      run: echo "Sucedio algo en Develop"
+      
+    - name: Say something 🔔
+      if: ${{ github.ref == 'refs/heads/release'}}
+      run: echo "Sucedio algo en release"
+      
+      
+        
+      
